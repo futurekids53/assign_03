@@ -1,6 +1,7 @@
 var citys = ['基隆','台北','新北市','桃園','新竹','苗栗','台中','彰化','雲林','南投','嘉義','台南','高雄','屏東','台東','花蓮','宜蘭',];
-
 var subcity = {};
+var cityNum = {};
+
 subcity['基隆']=['七堵',];
 subcity['台北']=['內湖','新店',];
 subcity['新北市']=['淡水','鶯歌','金山','三芝','萬里','雙溪',];
@@ -19,7 +20,6 @@ subcity['台東']=['台東市','關山',];
 subcity['花蓮']=['花蓮市',];
 subcity['宜蘭']=['宜蘭市','蘇澳','南澳',];
 
-var cityNum = {};
 cityNum['七堵'] = 2306188;
 cityNum['內湖'] = 2306179;
 cityNum['新店'] = 2306186;
@@ -69,20 +69,20 @@ cityNum['南澳'] = 2306243;
 var init = function(){
 
 	var cityArray1 = [];
+  var cityArray2 = [];
+
 	for (var i in cityNum){
 		cityArray1.push('<div class="btn btn-link" id='+cityNum[i]+">"+i+"</div>");
 	};
 
-	$("#func1").append(cityArray1);
-
-	var cityArray2 = [];
-	for (var j in citys){
-		cityArray2.push("<option>"+citys[j]+"</option>");
+  for (var j in citys){
+    cityArray2.push("<option>"+citys[j]+"</option>");
+  };
 
 
-	};
-
+	$("#func1").append(cityArray1);	
 	$("#box1").append(cityArray2);
+
   $('#box1').ready( function(e) {
 
       var chosen = $(this).find(':selected').text();
@@ -129,7 +129,7 @@ var updateWeather = function(woeid) {
     	);
     };
 
-    $('#func1').on('click', 'div.btn.btn-link', function(e) {
+    $('#func1').on('click', 'div.btn', function(e) {
       console.log(e.target.id);
       var woeid = e.target.id;
       updateWeather(woeid);
